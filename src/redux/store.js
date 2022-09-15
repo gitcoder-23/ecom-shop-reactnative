@@ -9,10 +9,14 @@ const authPersistConfig = {
   // whitelist: ['auth'],
 };
 
+const combinedReducer = combineReducers({products: productsReducer});
+
+const rootReducer = (state, action) => {
+  return combinedReducer(state, action);
+};
+
 const Store = configureStore({
-  reducer: {
-    products: productsReducer,
-  },
+  reducer: rootReducer,
   middleware: getDefaultMiddleware => {
     if (__DEV__) {
       const createDebugger = require('redux-flipper').default;
@@ -23,6 +27,21 @@ const Store = configureStore({
     return getDefaultMiddleware();
   },
 });
+
+// const Store = configureStore({
+//   reducer: {
+//     products: productsReducer,
+//   },
+//   middleware: getDefaultMiddleware => {
+//     if (__DEV__) {
+//       const createDebugger = require('redux-flipper').default;
+//       return getDefaultMiddleware({serializableCheck: false}).concat(
+//         createDebugger(),
+//       );
+//     }
+//     return getDefaultMiddleware();
+//   },
+// });
 
 export default Store;
 

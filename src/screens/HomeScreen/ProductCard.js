@@ -7,12 +7,13 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 var {width} = Dimensions.get('window');
 
 const ProductCard = ({id, product, indx}) => {
+  const [click, setClick] = useState(false);
   return (
     <View style={styles.ProductCard}>
       <Image source={{uri: product.images[0].url}} style={styles.image} />
@@ -39,27 +40,49 @@ const ProductCard = ({id, product, indx}) => {
             marginLeft: -5,
             marginTop: -5,
           }}>
-          {product.offerPrice}
+          {/* $ {product.offerPrice} */}
+          {product.offerPrice.length > 0 ? '$' + product.offerPrice : null}
+          {/* {!product.offerPrice ? null : '$' + product.offerPrice} */}
         </Text>
         <View style={{flexDirection: 'row', justifyContent: 'flex-end'}}>
-          <TouchableOpacity>
-            <Icon
-              name={'heart-outline'}
-              color={'#333'}
-              size={25}
-              style={{marginRight: 10}}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <Icon
-              name={'cart-outline'}
-              color={'#333'}
-              size={25}
-              style={{marginRight: 10}}
-            />
-          </TouchableOpacity>
+          {click ? (
+            <TouchableOpacity onPress={() => setClick(!click)}>
+              <Icon
+                name={'heart'}
+                color={'crimson'}
+                size={25}
+                // style={{marginRight: 10}}
+              />
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity onPress={() => setClick(!click)}>
+              <Icon
+                name={'heart-outline'}
+                color={'#333'}
+                size={25}
+                // style={{marginRight: 10}}
+              />
+            </TouchableOpacity>
+          )}
+          {product.Stock !== 0 ? (
+            <TouchableOpacity>
+              <Icon
+                name={'cart-outline'}
+                color={'#333'}
+                size={25}
+                // style={{marginRight: 10}}
+              />
+            </TouchableOpacity>
+          ) : null}
         </View>
       </View>
+      {product.Stock === 0 ? (
+        <View style={styles.outOfStock}>
+          <Text style={{color: '#fff', fontSize: 10, textAlign: 'center'}}>
+            Stock Limited
+          </Text>
+        </View>
+      ) : null}
     </View>
   );
 };
@@ -85,8 +108,8 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 10,
   },
   outOfStock: {
-    width: 50,
-    height: 50,
+    width: 45,
+    height: 45,
     backgroundColor: 'red',
     borderRadius: 50,
     position: 'absolute',
