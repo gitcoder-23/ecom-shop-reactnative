@@ -5,18 +5,19 @@ import {
   View,
   TextInput,
   Platform,
+  SafeAreaView,
 } from 'react-native';
 import React from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 var {width} = Dimensions.get('window');
 const Header = ({navigation}) => {
+  console.log('navigation-->', navigation);
   return (
-    <View style={styles.headerMain}>
+    <SafeAreaView style={styles.headerMain}>
       <View style={styles.headerFlex}>
         <TouchableOpacity
           onPress={() => {
-            // navigation.openDrawer();
-            console.log('touch');
+            navigation.openDrawer();
           }}>
           <Ionicons name="menu-outline" size={40} color="#333" />
         </TouchableOpacity>
@@ -34,7 +35,7 @@ const Header = ({navigation}) => {
           />
         </TouchableOpacity>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

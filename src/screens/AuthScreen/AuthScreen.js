@@ -8,7 +8,7 @@ const AuthScreen = ({navigation}) => {
         style={{
           backgroundColor: '#e5e5e5',
         }}>
-        <Text onPress={() => navigation.navigate('Home')}>AuthScreen</Text>
+        <Text onPress={() => navigation.navigate('ButtonTab')}>AuthScreen</Text>
       </ScrollView>
     </>
   );

@@ -30,7 +30,7 @@ const TabNavigator = () => {
         // style={styles.bottomTab}
       >
         <Tab.Screen
-          name="Home"
+          name="Dashboard"
           component={HomeScreen}
           options={({route}) => ({
             // headerShown: false,

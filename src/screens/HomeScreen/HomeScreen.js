@@ -7,7 +7,7 @@ import ProductHome from './ProductHome';
 const HomeScreen = ({navigation}) => {
   return (
     <View>
-      <Header />
+      <Header navigation={navigation} />
 
       <ScrollView
         showsHorizontalScrollIndicator={false}

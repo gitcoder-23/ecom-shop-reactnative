@@ -1,9 +1,9 @@
 import {View, Text, Platform, StyleSheet} from 'react-native';
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import HomeScreen from '../screens/HomeScreen/HomeScreen';
 import AuthScreen from '../screens/AuthScreen/AuthScreen';
 import TabNavigator from './TabNavigator';
+import DrawerMenu from './DrawerMenu';
 
 const Stack = createStackNavigator();
 const myOptions = {
@@ -25,18 +25,18 @@ const StackNav = () => {
   return (
     <>
       <View style={styles.container}>
-        {/* <Stack.Navigator initialRouteName="Tabs"> */}
+        {/* <Stack.Navigator initialRouteName="ButtonTab"> */}
         <Stack.Navigator>
           <Stack.Screen
-            name="Tabs"
-            component={TabNavigator}
+            name="DrawerMenu"
+            component={DrawerMenu}
             options={{...myOptions, headerShown: false}}
           />
-          <Stack.Screen
+          {/* <Stack.Screen
             name="Auth"
             component={AuthScreen}
             options={{...myOptions, headerShown: false}}
-          />
+          /> */}
         </Stack.Navigator>
       </View>
     </>
