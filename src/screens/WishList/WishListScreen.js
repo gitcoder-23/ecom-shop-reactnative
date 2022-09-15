@@ -1,16 +1,14 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 
-const MainDrawerNav = () => {
+const WishListScreen = () => {
   return (
-    <>
-      <View>
-        <Text>Main</Text>
-      </View>
-    </>
+    <View>
+      <Text>WishListScreen</Text>
+    </View>
   );
 };
 
-export default MainDrawerNav;
+export default WishListScreen;
 
 const styles = StyleSheet.create({});

@@ -1,8 +1,9 @@
 /**
  * @format
  */
-import 'react-native-gesture-handler';
+
 import React from 'react';
+import 'react-native-gesture-handler';
 import {AppRegistry} from 'react-native';
 import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';

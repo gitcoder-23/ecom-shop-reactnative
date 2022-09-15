@@ -1,16 +1,14 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 
-const MainDrawerNav = () => {
+const ProductScreen = () => {
   return (
-    <>
-      <View>
-        <Text>Main</Text>
-      </View>
-    </>
+    <View>
+      <Text>ProductScreen</Text>
+    </View>
   );
 };
 
-export default MainDrawerNav;
+export default ProductScreen;
 
 const styles = StyleSheet.create({});

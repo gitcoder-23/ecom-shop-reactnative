@@ -6,7 +6,7 @@ import ProductCard from './ProductCard';
 
 var {width} = Dimensions.get('window');
 
-const HomeProduct = () => {
+const ProductHome = () => {
   const dispatch = useDispatch();
   const {products, error, loading} = useSelector(state => state.products);
   console.log('products->', products);
@@ -42,7 +42,7 @@ const HomeProduct = () => {
   );
 };
 
-export default HomeProduct;
+export default ProductHome;
 
 const styles = StyleSheet.create({
   container: {

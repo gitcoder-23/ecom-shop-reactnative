@@ -1,18 +1,19 @@
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import Header from '../../components/layout/Header';
-import Banner from '../../components/Home/Banner';
-import HomeProduct from './HomeProduct';
+import Banner from '../../components/Foreground/Banner';
+import ProductHome from './ProductHome';
 
-const HomeScreen = () => {
+const HomeScreen = ({navigation}) => {
   return (
     <View>
       <Header />
+
       <ScrollView
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}>
         <Banner />
-        <HomeProduct />
+        <ProductHome />
       </ScrollView>
     </View>
   );

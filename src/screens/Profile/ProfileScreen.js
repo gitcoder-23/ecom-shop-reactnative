@@ -1,16 +1,14 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 
-const MainDrawerNav = () => {
+const ProfileScreen = () => {
   return (
-    <>
-      <View>
-        <Text>Main</Text>
-      </View>
-    </>
+    <View>
+      <Text>ProfileScreen</Text>
+    </View>
   );
 };
 
-export default MainDrawerNav;
+export default ProfileScreen;
 
 const styles = StyleSheet.create({});
