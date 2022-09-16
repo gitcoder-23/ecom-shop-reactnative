@@ -6,18 +6,7 @@ import ProductCard from './ProductCard';
 
 var {width} = Dimensions.get('window');
 
-const ProductHome = () => {
-  const dispatch = useDispatch();
-  const {allProducts, error, loading} = useSelector(state => state.productData);
-  console.log('allProducts->', allProducts);
-  useEffect(() => {
-    if (error) {
-      // alert(error);
-      console.log(error);
-    }
-    dispatch(getProduct());
-  }, [dispatch, error]);
-
+const ProductHome = ({loading, error, allProducts}) => {
   return (
     <>
       <View>

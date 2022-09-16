@@ -3,8 +3,21 @@ import React from 'react';
 import Header from '../../components/layout/Header';
 import Banner from '../../components/Foreground/Banner';
 import ProductHome from './ProductHome';
+import {useDispatch, useSelector} from 'react-redux';
+import {useEffect} from 'react';
+import {getProduct} from '../../redux/actions/ProductAction';
 
 const HomeScreen = ({navigation}) => {
+  const dispatch = useDispatch();
+  const {allProducts, error, loading} = useSelector(state => state.productData);
+  // console.log('allProducts->', allProducts);
+  useEffect(() => {
+    if (error) {
+      // alert(error);
+      console.log(error);
+    }
+    dispatch(getProduct());
+  }, [dispatch, error]);
   return (
     <View>
       <Header navigation={navigation} />
@@ -13,7 +26,11 @@ const HomeScreen = ({navigation}) => {
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}>
         <Banner />
-        <ProductHome />
+        <ProductHome
+          loading={loading}
+          error={error}
+          allProducts={allProducts}
+        />
       </ScrollView>
     </View>
   );
