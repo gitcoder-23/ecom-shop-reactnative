@@ -2,14 +2,20 @@ import {configureStore, combineReducers} from '@reduxjs/toolkit';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {persistStore, persistReducer} from 'redux-persist';
 import productReducer from './reducers/ProductReducer';
+import UserReducer from './reducers/UserReducer';
 
 const authPersistConfig = {
-  key: 'auth',
+  key: 'userAuth',
   storage: AsyncStorage,
   // whitelist: ['auth'],
 };
 
-const combinedReducer = combineReducers({productData: productReducer});
+const combinedReducer = combineReducers({
+  productData: productReducer,
+  userAuth: UserReducer,
+
+  // userAuth: persistReducer(authPersistConfig, UserReducer),
+});
 
 const rootReducer = (state, action) => {
   return combinedReducer(state, action);

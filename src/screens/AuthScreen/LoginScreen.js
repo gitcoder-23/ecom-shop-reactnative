@@ -1,5 +1,7 @@
 import {
+  Alert,
   Dimensions,
+  Keyboard,
   Platform,
   ScrollView,
   StyleSheet,
@@ -11,15 +13,36 @@ import {
 import React from 'react';
 import {useState} from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {useDispatch, useSelector} from 'react-redux';
+import {userLoginAction} from '../../redux/actions/UserAction';
 
 var {width} = Dimensions.get('window');
 
 const LoginScreen = ({navigation}) => {
+  const dispatch = useDispatch();
+  const {isLoading, error, isAuthenticated, loginItem, errorMessage} =
+    useSelector(state => state.userAuth);
+  console.log('loginItem->', loginItem);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const loginSubmit = () => {
-    console.log('loginSubmit');
+    Keyboard.dismiss();
+    if (!email || !password) {
+      Alert.alert('', 'Please fill all fields');
+    } else {
+      const postLogin = {
+        email: email,
+        password: password,
+      };
+      console.log('postLogin->', postLogin);
+      dispatch(userLoginAction({postLogin}))
+        .unwrap()
+        .then(loginRes => {
+          console.log('loginResp->', loginRes);
+        })
+        .catch(err => console.log('loginerr->', err));
+    }
   };
   return (
     <ScrollView

@@ -7,6 +7,7 @@ import {
   TextInput,
   Image,
   ScrollView,
+  Platform,
 } from 'react-native';
 import React, {useEffect} from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -39,7 +40,7 @@ const SignupScreen = ({navigation}) => {
           style={{
             fontSize: 30,
             fontWeight: '700',
-            fontFamily: 'Roboto',
+            fontFamily: Platform.OS === 'ios' ? 'System' : 'sans-serif',
             color: '#333',
           }}>
           Welcome,
@@ -48,7 +49,7 @@ const SignupScreen = ({navigation}) => {
           style={{
             fontSize: 20,
             fontWeight: '500',
-            fontFamily: 'sans-serif',
+            fontFamily: Platform.OS === 'ios' ? 'System' : 'sans-serif',
             color: '#555',
           }}>
           Crate an account to continue!

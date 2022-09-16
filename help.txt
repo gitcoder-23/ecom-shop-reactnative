@@ -4,6 +4,7 @@
 https://ionic.io/ionicons
 
  "@material-ui/lab": "^4.0.0-alpha.60",
- 3:37:12
+5:00:04
+ Iterceptor setup axios
 
  npx react-native-clean-project
