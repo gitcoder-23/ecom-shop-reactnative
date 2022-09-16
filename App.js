@@ -1,10 +1,12 @@
 import {NavigationContainer} from '@react-navigation/native';
 import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import MyStatusBar from './src/components/AppHeader/MyStatusBar';
 import StackNav from './src/AppNavigation/StackNav';
+import DrawerMenu from './src/AppNavigation/DrawerMenu';
 
 const MainMenu = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
   return (
     <>
       <View
@@ -14,7 +16,7 @@ const MainMenu = () => {
         }}>
         <MyStatusBar backgroundColor="#333" barStyle="light-content" />
         <NavigationContainer>
-          <StackNav />
+          {isAuthenticated ? <StackNav /> : <DrawerMenu />}
         </NavigationContainer>
       </View>
     </>

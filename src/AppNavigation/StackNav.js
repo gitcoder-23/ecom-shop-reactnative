@@ -4,6 +4,10 @@ import {createStackNavigator} from '@react-navigation/stack';
 import AuthScreen from '../screens/AuthScreen/AuthScreen';
 import TabNavigator from './TabNavigator';
 import DrawerMenu from './DrawerMenu';
+import LoginScreen from '../screens/AuthScreen/LoginScreen';
+import SignupScreen from '../screens/AuthScreen/SignupScreen';
+import SplashScreen from '../screens/AuthScreen/SplashScreen';
+import ForgetPasswordScreen from '../screens/AuthScreen/ForgetPasswordScreen';
 
 const Stack = createStackNavigator();
 const myOptions = {
@@ -26,12 +30,16 @@ const StackNav = () => {
     <>
       <View style={styles.container}>
         {/* <Stack.Navigator initialRouteName="ButtonTab"> */}
-        <Stack.Navigator>
-          <Stack.Screen
-            name="DrawerMenu"
-            component={DrawerMenu}
-            options={{...myOptions, headerShown: false}}
-          />
+
+        <Stack.Navigator
+          screenOptions={{
+            headerShown: false,
+          }}
+          initialRouteName="Login">
+          <Stack.Screen name="Login" component={LoginScreen} />
+          <Stack.Screen name="Signup" component={SignupScreen} />
+          <Stack.Screen name="Splash" component={SplashScreen} />
+          <Stack.Screen name="Forgot" component={ForgetPasswordScreen} />
           {/* <Stack.Screen
             name="Auth"
             component={AuthScreen}

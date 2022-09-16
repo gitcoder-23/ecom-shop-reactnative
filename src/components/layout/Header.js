@@ -11,7 +11,7 @@ import React from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 var {width} = Dimensions.get('window');
 const Header = ({navigation}) => {
-  console.log('navigation-->', navigation);
+  // console.log('navigation-->', navigation);
   return (
     <SafeAreaView style={styles.headerMain}>
       <View style={styles.headerFlex}>

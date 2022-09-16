@@ -19,20 +19,28 @@ const HomeScreen = ({navigation}) => {
     dispatch(getProduct());
   }, [dispatch, error]);
   return (
-    <View>
-      <Header navigation={navigation} />
+    <>
+      {loading ? (
+        <View>
+          <Text>Loading..</Text>
+        </View>
+      ) : (
+        <View>
+          <Header navigation={navigation} />
 
-      <ScrollView
-        showsHorizontalScrollIndicator={false}
-        showsVerticalScrollIndicator={false}>
-        <Banner />
-        <ProductHome
-          loading={loading}
-          error={error}
-          allProducts={allProducts}
-        />
-      </ScrollView>
-    </View>
+          <ScrollView
+            showsHorizontalScrollIndicator={false}
+            showsVerticalScrollIndicator={false}>
+            <Banner />
+            <ProductHome
+              loading={loading}
+              error={error}
+              allProducts={allProducts}
+            />
+          </ScrollView>
+        </View>
+      )}
+    </>
   );
 };
 
