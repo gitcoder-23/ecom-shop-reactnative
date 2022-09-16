@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
     color: '#FB578E',
   },
   LoginBox: {
-    marginTop: width / 4,
+    marginTop: width / 6,
   },
   Button: {
     width: '100%',
