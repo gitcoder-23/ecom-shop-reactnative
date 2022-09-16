@@ -1,7 +1,7 @@
 import {configureStore, combineReducers} from '@reduxjs/toolkit';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {persistStore, persistReducer} from 'redux-persist';
-import {productsReducer} from './reducers/ProductReducer';
+import productReducer from './reducers/ProductReducer';
 
 const authPersistConfig = {
   key: 'auth',
@@ -9,7 +9,7 @@ const authPersistConfig = {
   // whitelist: ['auth'],
 };
 
-const combinedReducer = combineReducers({products: productsReducer});
+const combinedReducer = combineReducers({productData: productReducer});
 
 const rootReducer = (state, action) => {
   return combinedReducer(state, action);
@@ -30,7 +30,7 @@ const Store = configureStore({
 
 // const Store = configureStore({
 //   reducer: {
-//     products: productsReducer,
+//     products: productReducer,
 //   },
 //   middleware: getDefaultMiddleware => {
 //     if (__DEV__) {

@@ -5,3 +5,5 @@ https://ionic.io/ionicons
 
  "@material-ui/lab": "^4.0.0-alpha.60",
  3:37:12
+
+ npx react-native-clean-project

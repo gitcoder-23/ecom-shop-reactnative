@@ -1,21 +1,34 @@
+import {createAsyncThunk} from '@reduxjs/toolkit';
 import axios from 'axios';
 
-export const getProduct = () => async dispatch => {
+export const getProduct = createAsyncThunk('product/get', async () => {
   try {
-    dispatch({
-      type: 'allProductRequest',
-    });
-    const {data} = await axios.get(
+    const response = await axios.get(
       'https://mern-nest-ecommerce.herokuapp.com/api/v2/products',
     );
-    dispatch({
-      type: 'allProductSuccess',
-      payload: data,
-    });
+    // console.log('response->', response);
+    return response.data;
   } catch (error) {
-    dispatch({
-      type: 'allProductFail',
-      payload: error.response.data.message,
-    });
+    return error.response.data.message;
   }
-};
+});
+
+// export const getProduct = () => async dispatch => {
+//   try {
+//     dispatch({
+//       type: 'allProductRequest',
+//     });
+//     const {data} = await axios.get(
+//       'https://mern-nest-ecommerce.herokuapp.com/api/v2/products',
+//     );
+//     dispatch({
+//       type: 'allProductSuccess',
+//       payload: data,
+//     });
+//   } catch (error) {
+//     dispatch({
+//       type: 'allProductFail',
+//       payload: error.response.data.message,
+//     });
+//   }
+// };

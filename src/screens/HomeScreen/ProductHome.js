@@ -8,20 +8,30 @@ var {width} = Dimensions.get('window');
 
 const ProductHome = () => {
   const dispatch = useDispatch();
-  const {products, error, loading} = useSelector(state => state.products);
-  console.log('products->', products);
+  const {allProducts, error, loading} = useSelector(state => state.productData);
+  console.log('allProducts->', allProducts);
   useEffect(() => {
     if (error) {
-      alert(error);
+      // alert(error);
+      console.log(error);
     }
     dispatch(getProduct());
   }, [dispatch, error]);
 
   return (
     <>
+      <View>
+        <Text>Hi</Text>
+      </View>
       {loading ? (
         <View>
           <Text>Loading...</Text>
+        </View>
+      ) : !allProducts ? (
+        <View>
+          <Text style={{fontSize: 25, color: '#333', textAlign: 'center'}}>
+            No product found
+          </Text>
         </View>
       ) : (
         <View style={styles.container}>
@@ -29,8 +39,8 @@ const ProductHome = () => {
             Best Selling
           </Text>
           <View style={styles.productCard}>
-            {products &&
-              products.map((pData, indx) => (
+            {allProducts &&
+              allProducts.products.map((pData, indx) => (
                 <Fragment key={indx}>
                   <ProductCard id={pData._id} product={pData} indx={indx} />
                 </Fragment>
