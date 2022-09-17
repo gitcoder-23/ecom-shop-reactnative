@@ -8,13 +8,22 @@ const initialState = {
   error: true,
   isSuccess: false,
   errorMessage: '',
+  token: '',
 };
 
 const UserReducer = createSlice({
   name: 'userReducer',
   initialState: initialState,
   // action based reducers
-  reducers: {},
+  reducers: {
+    logout: state => {
+      state.loginItem.token = '';
+      state.loginItem = {};
+      state.errorMessage = 'Logout success';
+      state.isLoading = false;
+      state.isAuthenticated = false;
+    },
+  },
   extraReducers: function (builder) {
     builder.addCase(userLoginAction.pending, state => {
       state.isLoading = true;
@@ -39,5 +48,7 @@ const UserReducer = createSlice({
     });
   },
 });
+
+export const {logout} = UserReducer.actions;
 
 export default UserReducer.reducer;

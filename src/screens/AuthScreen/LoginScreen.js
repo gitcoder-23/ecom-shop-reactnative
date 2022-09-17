@@ -49,7 +49,14 @@ const LoginScreen = ({navigation}) => {
     }
   };
 
-  useEffect(() => {}, [dispatch, error, isAuthenticated]);
+  useEffect(() => {
+    if (error) {
+      console.log('login error');
+    }
+    if (isAuthenticated) {
+      console.log('login success');
+    }
+  }, [dispatch, error, isAuthenticated]);
 
   return (
     <ScrollView

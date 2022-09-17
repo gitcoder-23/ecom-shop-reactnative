@@ -7,8 +7,9 @@ import StackNav from './src/AppNavigation/StackNav';
 import DrawerMenu from './src/AppNavigation/DrawerMenu';
 import {resetInterceptor} from './src/rootApi';
 
-const MainMenu = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+const MainMenu = ({isAuthenticated, loginItem}) => {
+  // const [isAuthenticated, setIsAuthenticated] = useState(true);
+  console.log('isAuthenticated->', isAuthenticated, loginItem);
   return (
     <>
       <View
@@ -18,7 +19,7 @@ const MainMenu = () => {
         }}>
         <MyStatusBar backgroundColor="#333" barStyle="light-content" />
         <NavigationContainer>
-          {isAuthenticated ? <StackNav /> : <DrawerMenu />}
+          {isAuthenticated === false ? <StackNav /> : <DrawerMenu />}
         </NavigationContainer>
       </View>
     </>
@@ -33,10 +34,10 @@ const App = () => {
     if (loginItem.token) {
       resetInterceptor(loginItem.token);
     }
-  }, [loginItem]);
+  }, [loginItem, isAuthenticated]);
   return (
     <>
-      <MainMenu />
+      <MainMenu loginItem={loginItem} isAuthenticated={isAuthenticated} />
     </>
   );
 };

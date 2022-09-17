@@ -14,8 +14,11 @@ import {
 } from '@react-navigation/drawer';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {useDispatch} from 'react-redux';
+import {logout} from '../redux/reducers/UserReducer';
 
 const CustomDrawer = props => {
+  const dispatch = useDispatch();
   let userData = 'Ram';
   return (
     <View
@@ -56,6 +59,7 @@ const CustomDrawer = props => {
         <TouchableOpacity
           onPress={() => {
             console.log('press logout');
+            dispatch(logout());
           }}
           style={{paddingVertical: 15}}>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
