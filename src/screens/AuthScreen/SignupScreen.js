@@ -184,6 +184,7 @@ const styles = StyleSheet.create({
   },
   inputBox: {
     width: width * 1 - 50,
+    height: Platform.OS === 'ios' ? 50 : 'auto',
     borderWidth: 1,
     borderRadius: 15,
     borderColor: '#3BB77E',
