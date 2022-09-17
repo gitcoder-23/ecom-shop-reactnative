@@ -23,7 +23,7 @@ const LoginScreen = ({navigation}) => {
   const dispatch = useDispatch();
   const {isLoading, error, isAuthenticated, loginItem, errorMessage} =
     useSelector(state => state.userAuth);
-  console.log('loginItem->', loginItem);
+  // console.log('loginItem->', loginItem);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
