@@ -12,9 +12,9 @@ const authPersistConfig = {
 
 const combinedReducer = combineReducers({
   productData: productReducer,
-  userAuth: UserReducer,
+  // userAuth: UserReducer,
 
-  // userAuth: persistReducer(authPersistConfig, UserReducer),
+  userAuth: persistReducer(authPersistConfig, UserReducer),
 });
 
 const rootReducer = (state, action) => {
@@ -34,21 +34,6 @@ const Store = configureStore({
   },
 });
 
-// const Store = configureStore({
-//   reducer: {
-//     products: productReducer,
-//   },
-//   middleware: getDefaultMiddleware => {
-//     if (__DEV__) {
-//       const createDebugger = require('redux-flipper').default;
-//       return getDefaultMiddleware({serializableCheck: false}).concat(
-//         createDebugger(),
-//       );
-//     }
-//     return getDefaultMiddleware();
-//   },
-// });
-
 export default Store;
 
-// export const persistor = persistStore(Store);
+export const persistor = persistStore(Store);

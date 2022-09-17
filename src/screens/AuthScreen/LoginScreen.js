@@ -15,6 +15,7 @@ import {useState} from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {useDispatch, useSelector} from 'react-redux';
 import {userLoginAction} from '../../redux/actions/UserAction';
+import {useEffect} from 'react';
 
 var {width} = Dimensions.get('window');
 
@@ -35,15 +36,21 @@ const LoginScreen = ({navigation}) => {
         email: email,
         password: password,
       };
-      console.log('postLogin->', postLogin);
+      // console.log('postLogin->', postLogin);
       dispatch(userLoginAction({postLogin}))
         .unwrap()
         .then(loginRes => {
           console.log('loginResp->', loginRes);
         })
-        .catch(err => console.log('loginerr->', err));
+        .catch(err => {
+          console.log('loginerr->', err);
+          Alert.alert('', 'Something went wrong invalid credential');
+        });
     }
   };
+
+  useEffect(() => {}, [dispatch, error, isAuthenticated]);
+
   return (
     <ScrollView
       showsHorizontalScrollIndicator={false}

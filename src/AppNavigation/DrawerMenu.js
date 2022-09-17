@@ -5,7 +5,6 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import CustomDrawer from './CustomDrawer';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import TabNavigator from './TabNavigator';
-import AuthScreen from '../screens/AuthScreen/AuthScreen';
 import ProductScreen from '../screens/Product/ProductScreen';
 import WishListScreen from '../screens/WishList/WishListScreen';
 import CartScreen from '../screens/CartScreen/CartScreen';

@@ -1,11 +1,9 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import axios from 'axios';
+import rootApi from '../../rootApi';
 
 export const getProduct = createAsyncThunk('product/get', async () => {
   try {
-    const response = await axios.get(
-      'https://mern-nest-ecommerce.herokuapp.com/api/v2/products',
-    );
+    const response = await rootApi.get('/products');
     // console.log('response->', response);
     return response.data;
   } catch (error) {

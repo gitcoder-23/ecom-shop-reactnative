@@ -1,7 +1,6 @@
 import {View, Text, Platform, StyleSheet} from 'react-native';
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import AuthScreen from '../screens/AuthScreen/AuthScreen';
 import TabNavigator from './TabNavigator';
 import DrawerMenu from './DrawerMenu';
 import LoginScreen from '../screens/AuthScreen/LoginScreen';
@@ -42,7 +41,7 @@ const StackNav = () => {
           <Stack.Screen name="Forgot" component={ForgetPasswordScreen} />
           {/* <Stack.Screen
             name="Auth"
-            component={AuthScreen}
+            component={Login}
             options={{...myOptions, headerShown: false}}
           /> */}
         </Stack.Navigator>

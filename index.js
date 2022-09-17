@@ -14,9 +14,9 @@ import Store, {persistor} from './src/redux/store';
 const EcomShop = () => {
   return (
     <Provider store={Store}>
-      {/* <PersistGate loading={null} persistor={persistor}> */}
-      <App />
-      {/* </PersistGate> */}
+      <PersistGate loading={null} persistor={persistor}>
+        <App />
+      </PersistGate>
     </Provider>
   );
 };
