@@ -14,35 +14,43 @@ import {
 } from '@react-navigation/drawer';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {logout} from '../redux/reducers/UserReducer';
+import UserAvatar from 'react-native-user-avatar';
 
 const CustomDrawer = props => {
   const dispatch = useDispatch();
-  let userData = 'Ram';
+  const {isAuthenticated, userItem, isLoading} = useSelector(
+    state => state.userAuth,
+  );
+
+  console.log('userItem->', userItem);
   return (
     <View
       style={{
         flex: 1,
       }}>
       <TouchableHighlight>
-        {userData ? (
+        {userItem && userItem?.user && (
           <>
             <View style={[styles.profileImgContainerUser]}>
-              <Image
-                source={require('../assets/BottomTab/user.jpg')}
-                style={styles.logoImgUser}
-              />
-              <Text style={{fontSize: 18, color: '#000'}}>John Doe</Text>
-            </View>
-          </>
-        ) : (
-          <>
-            <View style={[styles.profileImgContainer]}>
-              <Image
-                source={require('../assets/splash/splash.png')}
-                style={styles.logoImg}
-              />
+              {userItem?.user?.avatar?.url ? (
+                <>
+                  <Image
+                    source={{uri: userItem?.user?.avatar?.url}}
+                    style={styles.logoImgUser}
+                  />
+                  <Text style={{fontSize: 18, color: '#000'}}>
+                    {userItem?.user?.name}
+                  </Text>
+                </>
+              ) : (
+                <UserAvatar
+                  size={100}
+                  name={userItem?.user?.name}
+                  bgColors={['#549979']}
+                />
+              )}
             </View>
           </>
         )}
@@ -100,6 +108,8 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     borderRadius: 100,
+    borderColor: '#333',
+    borderWidth: 1,
     resizeMode: 'cover',
   },
 

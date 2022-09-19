@@ -18,7 +18,7 @@ const TabNavigator = () => {
     state => state.userAuth,
   );
 
-  console.log('userItem->', userItem);
+  // console.log('userItem->', userItem);
   return (
     <>
       <Tab.Navigator
