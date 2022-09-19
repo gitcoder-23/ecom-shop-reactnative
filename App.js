@@ -8,8 +8,6 @@ import DrawerMenu from './src/AppNavigation/DrawerMenu';
 import {resetInterceptor} from './src/rootApi';
 
 const MainMenu = ({isAuthenticated, loginItem}) => {
-  // const [isAuthenticated, setIsAuthenticated] = useState(true);
-  // console.log('isAuthenticated->', isAuthenticated, loginItem);
   return (
     <>
       <View
@@ -28,7 +26,6 @@ const MainMenu = ({isAuthenticated, loginItem}) => {
 
 const App = () => {
   const {isAuthenticated, loginItem} = useSelector(state => state.userAuth);
-  // console.log('loginItem-app->', loginItem.token);
 
   React.useEffect(() => {
     if (loginItem.token) {
