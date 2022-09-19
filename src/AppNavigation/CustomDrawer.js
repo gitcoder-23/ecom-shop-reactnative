@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   Image,
   StyleSheet,
@@ -7,6 +7,7 @@ import {
   View,
   TouchableHighlight,
   Platform,
+  Alert,
 } from 'react-native';
 import {
   DrawerItemList,
@@ -20,41 +21,49 @@ import UserAvatar from 'react-native-user-avatar';
 
 const CustomDrawer = props => {
   const dispatch = useDispatch();
-  const {isAuthenticated, userItem, isLoading} = useSelector(
-    state => state.userAuth,
-  );
+  const {userItem, error} = useSelector(state => state.userAuth);
 
   console.log('userItem->', userItem);
+
+  const logoutFunc = () => {
+    dispatch(logout());
+    if (error) {
+      console.log('logout-Err->', error);
+    }
+    Alert.alert('', 'Logout success');
+  };
   return (
     <View
       style={{
         flex: 1,
       }}>
-      <TouchableHighlight>
-        {userItem && userItem?.user && (
-          <>
-            <View style={[styles.profileImgContainerUser]}>
-              {userItem?.user?.avatar?.url ? (
-                <>
-                  <Image
-                    source={{uri: userItem?.user?.avatar?.url}}
-                    style={styles.logoImgUser}
-                  />
-                  <Text style={{fontSize: 18, color: '#000'}}>
-                    {userItem?.user?.name}
-                  </Text>
-                </>
-              ) : (
+      {/* <TouchableHighlight> */}
+      {userItem && userItem?.user && (
+        <>
+          <View style={[styles.profileImgContainerUser]}>
+            {userItem?.user?.avatar?.url ? (
+              <>
+                <Image
+                  source={{uri: userItem?.user?.avatar?.url}}
+                  style={styles.logoImgUser}
+                />
+                <Text style={{fontSize: 18, color: '#000'}}>
+                  {userItem?.user?.name}
+                </Text>
+              </>
+            ) : (
+              <View>
                 <UserAvatar
                   size={100}
                   name={userItem?.user?.name}
                   bgColors={['#549979']}
                 />
-              )}
-            </View>
-          </>
-        )}
-      </TouchableHighlight>
+              </View>
+            )}
+          </View>
+        </>
+      )}
+      {/* </TouchableHighlight> */}
       <DrawerContentScrollView
         {...props}
         contentContainerStyle={{backgroundColor: '#e8e3e3'}}
@@ -65,10 +74,7 @@ const CustomDrawer = props => {
       </DrawerContentScrollView>
       <View style={{padding: 20, borderWidth: 1, borderTopColor: '#cccccc'}}>
         <TouchableOpacity
-          onPress={() => {
-            console.log('press logout');
-            dispatch(logout());
-          }}
+          onPress={() => logoutFunc()}
           style={{paddingVertical: 15}}>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
             <Icon

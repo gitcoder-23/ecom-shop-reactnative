@@ -14,7 +14,7 @@ import React from 'react';
 import {useState} from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {useDispatch, useSelector} from 'react-redux';
-import {userLoginAction} from '../../redux/actions/UserAction';
+import {userDataAction, userLoginAction} from '../../redux/actions/UserAction';
 import {useEffect} from 'react';
 
 var {width} = Dimensions.get('window');
@@ -41,6 +41,7 @@ const LoginScreen = ({navigation}) => {
         .unwrap()
         .then(loginRes => {
           console.log('loginResp->', loginRes);
+          dispatch(userDataAction());
         })
         .catch(err => {
           console.log('loginerr->', err);
@@ -55,6 +56,7 @@ const LoginScreen = ({navigation}) => {
     }
     if (isAuthenticated) {
       console.log('login success');
+      dispatch(userDataAction());
     }
   }, [dispatch, error, isAuthenticated]);
 
