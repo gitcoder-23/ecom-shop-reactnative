@@ -19,7 +19,6 @@ const TabNavigator = () => {
   );
 
   console.log('userItem->', userItem);
-  let userData = 'Ram';
   return (
     <>
       <Tab.Navigator
