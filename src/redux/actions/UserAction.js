@@ -20,3 +20,9 @@ export const userSignupAction = createAsyncThunk(
     return response.data;
   },
 );
+
+export const userDataAction = createAsyncThunk('user/data/get', async () => {
+  const response = await rootApi.get('/me');
+  // console.log('respose-userData->', response);
+  return response.data;
+});

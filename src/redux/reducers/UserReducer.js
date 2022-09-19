@@ -1,5 +1,9 @@
 import {createReducer, createSlice} from '@reduxjs/toolkit';
-import {userLoginAction, userSignupAction} from '../actions/UserAction';
+import {
+  userDataAction,
+  userLoginAction,
+  userSignupAction,
+} from '../actions/UserAction';
 
 const initialState = {
   loginItem: {},
@@ -10,6 +14,7 @@ const initialState = {
   isSuccess: false,
   errorMessage: '',
   token: '',
+  userItem: {},
 };
 
 const UserReducer = createSlice({
@@ -67,6 +72,27 @@ const UserReducer = createSlice({
       state.isLoading = false;
       state.error = true;
       state.errorMessage = 'Signup failed';
+    });
+
+    //user data
+
+    builder.addCase(userDataAction.pending, state => {
+      state.isLoading = true;
+    });
+    builder.addCase(userDataAction.fulfilled, (state, action) => {
+      state.isLoading = false;
+      const newPayload = action.payload;
+      if (newPayload) {
+        state.error = false;
+        state.userItem = newPayload;
+        state.errorMessage = 'User data get success';
+      }
+    });
+
+    builder.addCase(userDataAction.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = true;
+      state.errorMessage = 'User data get failed';
     });
   },
 });

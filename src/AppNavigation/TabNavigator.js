@@ -1,6 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import {Platform, StyleSheet, Text, View, Image} from 'react-native';
 import React from 'react';
+import {useSelector} from 'react-redux';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -13,6 +14,11 @@ import ProfileScreen from '../screens/Profile/ProfileScreen';
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {
+  const {isAuthenticated, userItem, isLoading} = useSelector(
+    state => state.userAuth,
+  );
+
+  console.log('userItem->', userItem);
   let userData = 'Ram';
   return (
     <>
@@ -159,9 +165,10 @@ const TabNavigator = () => {
                   alignItems: 'center',
                   justifyContent: 'center',
                 }}>
-                {userData ? (
+                {userItem && userItem?.user?.avatar?.url ? (
                   <Image
-                    source={require('../assets/BottomTab/user.jpg')}
+                    // source={require('../assets/BottomTab/user.jpg')}
+                    source={{uri: userItem?.user?.avatar?.url}}
                     style={{
                       width: 40,
                       height: 40,
