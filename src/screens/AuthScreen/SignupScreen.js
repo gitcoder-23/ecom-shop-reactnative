@@ -8,13 +8,18 @@ import {
   Image,
   ScrollView,
   Platform,
+  Keyboard,
+  Alert,
 } from 'react-native';
 import React, {useEffect} from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {useState} from 'react';
+import {userSignupAction} from '../../redux/actions/UserAction';
+import {useDispatch} from 'react-redux';
 var {width} = Dimensions.get('window');
 
 const SignupScreen = ({navigation}) => {
+  const dispatch = useDispatch();
   const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -23,12 +28,41 @@ const SignupScreen = ({navigation}) => {
   );
 
   const registerUser = () => {
-    console.log('registerUser');
+    Keyboard.dismiss();
+    if (!userName || !email || !password) {
+      Alert.alert('', 'Please fill all fields');
+    } else {
+      const postSignup = {
+        name: userName,
+        email: email,
+        password: password,
+        avatar:
+          'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80',
+      };
+      console.log('postSignup->', postSignup);
+      dispatch(userSignupAction(postSignup))
+        .unwrap()
+        .then(signupRes => {
+          console.log('signupRes->', signupRes);
+          if (signupRes?.success === true) {
+            navigation.navigate('Login');
+          } else if (signupRes?.success === false) {
+            Alert.alert('', 'User already exists');
+            navigation.navigate('Signup');
+          } else {
+            return;
+          }
+        })
+        .catch(err => {
+          console.log('signuperr->', err);
+          Alert.alert('', 'Something went wrong');
+        });
+    }
   };
 
   useEffect(() => {
     setAvatar('https://mern-nest-ecommerce.herokuapp.com/profile.png');
-  }, []);
+  }, [dispatch]);
 
   return (
     <ScrollView

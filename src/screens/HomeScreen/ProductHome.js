@@ -1,7 +1,5 @@
 import {Dimensions, StyleSheet, Text, View} from 'react-native';
-import React, {useEffect, Fragment} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {getProduct} from '../../redux/actions/ProductAction';
+import React, {Fragment} from 'react';
 import ProductCard from './ProductCard';
 
 var {width} = Dimensions.get('window');

@@ -9,7 +9,7 @@ import {resetInterceptor} from './src/rootApi';
 
 const MainMenu = ({isAuthenticated, loginItem}) => {
   // const [isAuthenticated, setIsAuthenticated] = useState(true);
-  console.log('isAuthenticated->', isAuthenticated, loginItem);
+  // console.log('isAuthenticated->', isAuthenticated, loginItem);
   return (
     <>
       <View
