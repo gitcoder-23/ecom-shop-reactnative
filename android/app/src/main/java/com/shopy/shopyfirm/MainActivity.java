@@ -1,4 +1,4 @@
-package com.ecomshop;
+package com.shopy.shopyfirm;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;

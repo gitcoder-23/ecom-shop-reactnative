@@ -64,6 +64,8 @@ const SignupScreen = ({navigation}) => {
     setAvatar('https://mern-nest-ecommerce.herokuapp.com/profile.png');
   }, [dispatch]);
 
+  const uploadImage = () => {};
+
   return (
     <ScrollView
       style={styles.container}
@@ -143,7 +145,7 @@ const SignupScreen = ({navigation}) => {
                 borderColor: '#999',
               }}
             />
-            {/* <TouchableOpacity onPress={uploadImage}>
+            <TouchableOpacity onPress={uploadImage}>
               <View
                 style={{
                   marginLeft: 10,
@@ -163,7 +165,7 @@ const SignupScreen = ({navigation}) => {
                   Choose Photo
                 </Text>
               </View>
-            </TouchableOpacity> */}
+            </TouchableOpacity>
           </View>
           <TouchableOpacity onPress={registerUser}>
             <View style={styles.Button}>
