@@ -5,6 +5,7 @@ import {
   ScrollView,
   Dimensions,
   Image,
+  Platform,
 } from 'react-native';
 import React from 'react';
 import Swiper from 'react-native-swiper';
@@ -37,11 +38,11 @@ export default function Banner() {
             style={{
               height: width / 2,
             }}>
-            {BannerData.map(item => {
+            {BannerData.map((item, idx) => {
               return (
                 <Image
                   key={item}
-                  resizeMode="contain"
+                  resizeMode={Platform.OS === 'ios' ? 'cover' : 'contain'}
                   source={{uri: item}}
                   style={styles.banner}
                 />
