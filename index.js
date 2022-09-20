@@ -11,7 +11,7 @@ import App from './App';
 import {name as appName} from './app.json';
 import Store, {persistor} from './src/redux/store';
 
-const EcomShop = () => {
+const Shopy = () => {
   return (
     <Provider store={Store}>
       <PersistGate loading={null} persistor={persistor}>
@@ -21,5 +21,5 @@ const EcomShop = () => {
   );
 };
 
-AppRegistry.registerComponent(appName, () => EcomShop);
+AppRegistry.registerComponent(appName, () => Shopy);
 // AppRegistry.registerComponent(appName, () => App);

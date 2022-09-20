@@ -1,4 +1,4 @@
-package com.shopy.shopyfirm.newarchitecture;
+package com.ecomshop.ecomshopfirm.newarchitecture;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -19,9 +19,9 @@ import com.facebook.react.fabric.CoreComponentsRegistry;
 import com.facebook.react.fabric.EmptyReactNativeConfig;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
 import com.facebook.react.uimanager.ViewManagerRegistry;
-import com.shopy.shopyfirm.BuildConfig;
-import com.shopy.shopyfirm.newarchitecture.components.MainComponentsRegistry;
-import com.shopy.shopyfirm.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
+import com.ecomshop.ecomshopfirm.BuildConfig;
+import com.ecomshop.ecomshopfirm.newarchitecture.components.MainComponentsRegistry;
+import com.ecomshop.ecomshopfirm.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
 import java.util.ArrayList;
 import java.util.List;
 

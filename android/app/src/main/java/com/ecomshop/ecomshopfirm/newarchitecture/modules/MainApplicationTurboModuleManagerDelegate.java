@@ -1,4 +1,4 @@
-package com.shopy.shopyfirm.newarchitecture.modules;
+package com.ecomshop.ecomshopfirm.newarchitecture.modules;
 
 import com.facebook.jni.HybridData;
 import com.facebook.react.ReactPackage;

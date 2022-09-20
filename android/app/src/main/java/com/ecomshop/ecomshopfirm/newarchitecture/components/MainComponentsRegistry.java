@@ -1,4 +1,4 @@
-package com.shopy.shopyfirm.newarchitecture.components;
+package com.ecomshop.ecomshopfirm.newarchitecture.components;
 
 import com.facebook.jni.HybridData;
 import com.facebook.proguard.annotations.DoNotStrip;

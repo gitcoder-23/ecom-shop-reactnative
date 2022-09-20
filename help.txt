@@ -10,6 +10,7 @@ https://ionic.io/ionicons
  npx react-native-clean-project
 com.ecomshop
  com.shopy.shopyfirm
+ com.ecomshop.ecomshopfirm
 
  // React Native Image Picker 
 
