@@ -115,7 +115,7 @@ const LoginScreen = ({navigation}) => {
                 color: '#333',
                 fontSize: 15,
               }}
-              onPress={() => navigation.navigate('Forgot')}>
+              onPress={() => navigation.navigate('Splash')}>
               Forgot Password ?
             </Text>
             <TouchableOpacity onPress={loginSubmit}>

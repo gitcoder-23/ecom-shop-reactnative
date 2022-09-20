@@ -39,7 +39,7 @@ const StackNav = () => {
           <Stack.Screen name="Signup" component={SignupScreen} />
           <Stack.Screen name="Splash" component={SplashScreen} />
           <Stack.Screen
-            name="Forgot"
+            name="Forgetpass"
             component={ForgetPasswordScreen}
             options={{...myOptions, headerShown: true}}
           />

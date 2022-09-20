@@ -16,6 +16,8 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {useState} from 'react';
 import {userSignupAction} from '../../redux/actions/UserAction';
 import {useDispatch} from 'react-redux';
+import ImageCropPicker from 'react-native-image-crop-picker';
+
 var {width} = Dimensions.get('window');
 
 const SignupScreen = ({navigation}) => {
@@ -23,9 +25,43 @@ const SignupScreen = ({navigation}) => {
   const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [avatar, setAvatar] = useState(
+  const [avatarImage, setAvatarImage] = useState(
     'https://mern-nest-ecommerce.herokuapp.com/profile.png',
   );
+
+  const uploadCameraImage = async () => {
+    try {
+      await ImageCropPicker.openCamera({
+        width: 300,
+        height: 400,
+        cropping: true,
+        compressImageQuality: 0.8,
+      }).then(image => {
+        console.warn('cropedCamimg->', image);
+        setAvatarImage(image.path);
+      });
+    } catch (error) {
+      console.log('img-crop-err->', error);
+    }
+  };
+
+  const uploadLibraryImage = async () => {
+    try {
+      await ImageCropPicker.openPicker({
+        width: 300,
+        height: 400,
+        cropping: true,
+        compressImageQuality: 0.8,
+      }).then(image => {
+        console.warn('cropedLibimg->', image);
+        setAvatarImage(image.path);
+      });
+    } catch (error) {
+      console.log('img-crop-err->', error);
+    }
+  };
+
+  console.log(avatarImage);
 
   const registerUser = () => {
     Keyboard.dismiss();
@@ -36,8 +72,9 @@ const SignupScreen = ({navigation}) => {
         name: userName,
         email: email,
         password: password,
-        avatar:
-          'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80',
+        avatar: avatarImage,
+        // avatar:
+        //   'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80',
       };
       console.log('postSignup->', postSignup);
       dispatch(userSignupAction(postSignup))
@@ -45,6 +82,7 @@ const SignupScreen = ({navigation}) => {
         .then(signupRes => {
           console.log('signupRes->', signupRes);
           if (signupRes?.success === true) {
+            Alert.alert('', 'New user created');
             navigation.navigate('Login');
           } else if (signupRes?.success === false) {
             Alert.alert('', 'User already exists');
@@ -56,15 +94,14 @@ const SignupScreen = ({navigation}) => {
         .catch(err => {
           console.log('signuperr->', err);
           Alert.alert('', 'Something went wrong');
+          navigation.navigate('Signup');
         });
     }
   };
 
   useEffect(() => {
-    setAvatar('https://mern-nest-ecommerce.herokuapp.com/profile.png');
+    setAvatarImage('https://mern-nest-ecommerce.herokuapp.com/profile.png');
   }, [dispatch]);
-
-  const uploadImage = () => {};
 
   return (
     <ScrollView
@@ -135,7 +172,7 @@ const SignupScreen = ({navigation}) => {
               alignItems: 'center',
             }}>
             <Image
-              source={{uri: avatar}}
+              source={{uri: avatarImage}}
               style={{
                 width: 40,
                 height: 40,
@@ -145,7 +182,79 @@ const SignupScreen = ({navigation}) => {
                 borderColor: '#999',
               }}
             />
-            <TouchableOpacity onPress={uploadImage}>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: width - 95,
+              }}>
+              <TouchableOpacity onPress={uploadCameraImage}>
+                <View
+                  style={{
+                    marginLeft: 10,
+                    height: 50,
+                    width: width * 1 - 270,
+                    backgroundColor: '#f5f5f5',
+                    textAlign: 'center',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    borderRadius: 5,
+                    flexDirection: 'row',
+                  }}>
+                  <View style={{marginRight: 2}}>
+                    <Icon
+                      name="ios-camera-outline"
+                      size={25}
+                      style={{color: '#FB578E'}}
+                    />
+                  </View>
+                  <View>
+                    <Text
+                      style={{
+                        color: '#333',
+                        fontSize: 15,
+                      }}>
+                      Take Photo
+                    </Text>
+                  </View>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={uploadLibraryImage}>
+                <View
+                  style={{
+                    marginLeft: 10,
+                    height: 50,
+                    // width: width / 3,
+                    width: width * 1 - 240,
+                    backgroundColor: '#f5f5f5',
+                    textAlign: 'center',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    borderRadius: 5,
+                    flexDirection: 'row',
+                  }}>
+                  <View style={{marginRight: 2}}>
+                    <Icon
+                      name="folder-outline"
+                      size={25}
+                      style={{color: '#FB578E'}}
+                    />
+                  </View>
+                  <View>
+                    <Text
+                      style={{
+                        color: '#333',
+                        fontSize: 15,
+                      }}>
+                      Choose From Library
+                    </Text>
+                  </View>
+                </View>
+              </TouchableOpacity>
+            </View>
+
+            {/* <TouchableOpacity onPress={uploadImage}>
               <View
                 style={{
                   marginLeft: 10,
@@ -165,7 +274,7 @@ const SignupScreen = ({navigation}) => {
                   Choose Photo
                 </Text>
               </View>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </View>
           <TouchableOpacity onPress={registerUser}>
             <View style={styles.Button}>

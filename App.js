@@ -20,13 +20,13 @@ const MainMenu = ({isAuthenticated, loginItem, userItem, isLoading}) => {
         <MyStatusBar backgroundColor="#333" barStyle="light-content" />
         <NavigationContainer>
           <>
-            {isLoading ? (
+            {/* {isLoading ? (
               <View>
                 <Text style={{color: '#000', fontSize: 15}}>Loadig...</Text>
               </View>
-            ) : (
-              <>{isAuthenticated === false ? <StackNav /> : <DrawerMenu />}</>
-            )}
+            ) : ( */}
+            <>{isAuthenticated === false ? <StackNav /> : <DrawerMenu />}</>
+            {/* )} */}
           </>
         </NavigationContainer>
       </View>

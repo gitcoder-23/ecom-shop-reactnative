@@ -16,7 +16,7 @@ export const userSignupAction = createAsyncThunk(
   'user/signup',
   async postSignup => {
     const response = await rootApi.post('/registration', postSignup);
-    // console.log('respose-sigup->', response);
+    console.log('respose-sigup->', response);
     return response.data;
   },
 );

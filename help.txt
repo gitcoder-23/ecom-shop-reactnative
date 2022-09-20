@@ -15,3 +15,12 @@ com.ecomshop
  // React Native Image Picker 
 
 https://youtu.be/3_ldEVWlL18
+
+//splash screen
+https://www.npmjs.com/package/react-native-lottie-splash-screen
+https://www.npmjs.com/package/lottie-react-native (used)
+
+https://airbnb.io/lottie/#/
+https://lottiefiles.com/tag/reactnative
+
+
