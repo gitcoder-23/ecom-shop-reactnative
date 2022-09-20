@@ -8,7 +8,10 @@ import {
 const initialState = {
   loginItem: {},
   signupItem: {},
-  isLoading: true,
+  isLoginLoading: true,
+  isSigupLoading: true,
+  isUserDataLoading: true,
+  isForgetPassLoading: true,
   isAuthenticated: false,
   error: true,
   isSuccess: false,
@@ -29,18 +32,18 @@ const UserReducer = createSlice({
       state.signupItem = {};
       state.error = false;
       state.errorMessage = 'Logout success';
-      state.isLoading = false;
+      state.isLoginLoading = false;
       state.isAuthenticated = false;
     },
   },
   extraReducers: function (builder) {
     //login
     builder.addCase(userLoginAction.pending, state => {
-      state.isLoading = true;
+      state.isLoginLoading = true;
       state.isAuthenticated = false;
     });
     builder.addCase(userLoginAction.fulfilled, (state, action) => {
-      state.isLoading = false;
+      state.isLoginLoading = false;
       const newPayload = action.payload;
       if (newPayload) {
         state.error = false;
@@ -51,7 +54,7 @@ const UserReducer = createSlice({
     });
 
     builder.addCase(userLoginAction.rejected, (state, action) => {
-      state.isLoading = false;
+      state.isLoginLoading = false;
       state.error = true;
       state.isAuthenticated = false;
       state.errorMessage = 'Login failed';
@@ -59,10 +62,10 @@ const UserReducer = createSlice({
 
     //signup
     builder.addCase(userSignupAction.pending, state => {
-      state.isLoading = true;
+      state.isSigupLoading = true;
     });
     builder.addCase(userSignupAction.fulfilled, (state, action) => {
-      state.isLoading = false;
+      state.isSigupLoading = false;
       const newPayload = action.payload;
       if (newPayload) {
         state.error = false;
@@ -72,18 +75,18 @@ const UserReducer = createSlice({
     });
 
     builder.addCase(userSignupAction.rejected, (state, action) => {
-      state.isLoading = false;
+      state.isSigupLoading = false;
       state.error = true;
       state.errorMessage = 'Signup failed';
     });
 
-    //user data
+    //user get data
 
     builder.addCase(userDataAction.pending, state => {
-      state.isLoading = true;
+      state.isUserDataLoading = true;
     });
     builder.addCase(userDataAction.fulfilled, (state, action) => {
-      state.isLoading = false;
+      state.isUserDataLoading = false;
       const newPayload = action.payload;
       if (newPayload) {
         state.error = false;
@@ -93,7 +96,7 @@ const UserReducer = createSlice({
     });
 
     builder.addCase(userDataAction.rejected, (state, action) => {
-      state.isLoading = false;
+      state.isUserDataLoading = false;
       state.error = true;
       state.errorMessage = 'User data get failed';
     });

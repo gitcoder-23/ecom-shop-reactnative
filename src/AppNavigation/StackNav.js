@@ -41,7 +41,7 @@ const StackNav = () => {
           <Stack.Screen
             name="Forgetpass"
             component={ForgetPasswordScreen}
-            options={{...myOptions, headerShown: true}}
+            // options={{unmountOnBlur: true}}
           />
           {/* <Stack.Screen
             name="Auth"

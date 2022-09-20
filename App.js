@@ -10,7 +10,13 @@ import {resetInterceptor} from './src/rootApi';
 import {userDataAction} from './src/redux/actions/UserAction';
 import SplashScreen from './src/screens/AuthScreen/SplashScreen';
 
-const MainMenu = ({isAuthenticated, loginItem, userItem, isLoading}) => {
+const MainMenu = ({
+  isAuthenticated,
+  loginItem,
+  userItem,
+  isLoginLoading,
+  isUserDataLoading,
+}) => {
   return (
     <>
       <View
@@ -21,10 +27,7 @@ const MainMenu = ({isAuthenticated, loginItem, userItem, isLoading}) => {
         <MyStatusBar backgroundColor="#333" barStyle="light-content" />
         <NavigationContainer>
           <>
-            {isLoading ? (
-              // <View>
-              //   <Text style={{color: '#000', fontSize: 15}}>Loadig...</Text>
-              // </View>
+            {isLoginLoading && isUserDataLoading ? (
               <SplashScreen />
             ) : (
               <>{isAuthenticated === false ? <StackNav /> : <DrawerMenu />}</>
@@ -38,9 +41,13 @@ const MainMenu = ({isAuthenticated, loginItem, userItem, isLoading}) => {
 
 const App = () => {
   const dispatch = useDispatch();
-  const {isAuthenticated, loginItem, userItem, isLoading} = useSelector(
-    state => state.userAuth,
-  );
+  const {
+    isAuthenticated,
+    loginItem,
+    userItem,
+    isLoginLoading,
+    isUserDataLoading,
+  } = useSelector(state => state.userAuth);
 
   React.useEffect(() => {
     if (loginItem.token) {
@@ -58,7 +65,8 @@ const App = () => {
         loginItem={loginItem}
         isAuthenticated={isAuthenticated}
         userItem={userItem}
-        isLoading={isLoading}
+        isLoginLoading={isLoginLoading}
+        isUserDataLoading={isUserDataLoading}
       />
     </>
   );

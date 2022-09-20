@@ -3,6 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {persistStore, persistReducer} from 'redux-persist';
 import productReducer from './reducers/ProductReducer';
 import UserReducer from './reducers/UserReducer';
+import ForgetPassReduer from './reducers/ForgetPassReduer';
 
 const authPersistConfig = {
   key: 'userAuth',
@@ -12,7 +13,7 @@ const authPersistConfig = {
 
 const combinedReducer = combineReducers({
   productData: productReducer,
-  // userAuth: UserReducer,
+  forgetPass: ForgetPassReduer,
 
   userAuth: persistReducer(authPersistConfig, UserReducer),
 });

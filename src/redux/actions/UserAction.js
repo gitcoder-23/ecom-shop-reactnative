@@ -26,3 +26,13 @@ export const userDataAction = createAsyncThunk('user/data/get', async () => {
   // console.log('respose-userData->', response);
   return response.data;
 });
+
+export const userForgetPassAction = createAsyncThunk(
+  'user/forgetpass',
+  async postForgetPass => {
+    console.log('postForgetPass', postForgetPass);
+    const response = await rootApi.post('/password/forgot', postForgetPass);
+    // console.log('respose-forgetpass->', response);
+    return response.data;
+  },
+);

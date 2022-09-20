@@ -10,12 +10,11 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useState} from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {useDispatch, useSelector} from 'react-redux';
 import {userDataAction, userLoginAction} from '../../redux/actions/UserAction';
-import {useEffect} from 'react';
 
 var {width} = Dimensions.get('window');
 
@@ -115,7 +114,7 @@ const LoginScreen = ({navigation}) => {
                 color: '#333',
                 fontSize: 15,
               }}
-              onPress={() => navigation.navigate('Splash')}>
+              onPress={() => navigation.navigate('Forgetpass')}>
               Forgot Password ?
             </Text>
             <TouchableOpacity onPress={loginSubmit}>
