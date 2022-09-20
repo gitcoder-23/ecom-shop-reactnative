@@ -187,14 +187,16 @@ const SignupScreen = ({navigation}) => {
                 flexDirection: 'row',
                 alignItems: 'center',
                 justifyContent: 'center',
-                width: width - 95,
+                width: Platform.OS === 'android' ? width - 95 : width - 100,
               }}>
               <TouchableOpacity onPress={uploadCameraImage}>
                 <View
                   style={{
                     marginLeft: 10,
                     height: 50,
-                    width: width * 1 - 270,
+                    // width: width * 1 - 270,
+
+                    width: width / 3,
                     backgroundColor: '#f5f5f5',
                     textAlign: 'center',
                     justifyContent: 'center',
@@ -225,8 +227,8 @@ const SignupScreen = ({navigation}) => {
                   style={{
                     marginLeft: 10,
                     height: 50,
-                    // width: width / 3,
-                    width: width * 1 - 240,
+                    width: width / 3,
+                    // width: width * 1 - 240,
                     backgroundColor: '#f5f5f5',
                     textAlign: 'center',
                     justifyContent: 'center',

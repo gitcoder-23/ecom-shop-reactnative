@@ -8,6 +8,7 @@ import StackNav from './src/AppNavigation/StackNav';
 import DrawerMenu from './src/AppNavigation/DrawerMenu';
 import {resetInterceptor} from './src/rootApi';
 import {userDataAction} from './src/redux/actions/UserAction';
+import SplashScreen from './src/screens/AuthScreen/SplashScreen';
 
 const MainMenu = ({isAuthenticated, loginItem, userItem, isLoading}) => {
   return (
@@ -20,13 +21,14 @@ const MainMenu = ({isAuthenticated, loginItem, userItem, isLoading}) => {
         <MyStatusBar backgroundColor="#333" barStyle="light-content" />
         <NavigationContainer>
           <>
-            {/* {isLoading ? (
-              <View>
-                <Text style={{color: '#000', fontSize: 15}}>Loadig...</Text>
-              </View>
-            ) : ( */}
-            <>{isAuthenticated === false ? <StackNav /> : <DrawerMenu />}</>
-            {/* )} */}
+            {isLoading ? (
+              // <View>
+              //   <Text style={{color: '#000', fontSize: 15}}>Loadig...</Text>
+              // </View>
+              <SplashScreen />
+            ) : (
+              <>{isAuthenticated === false ? <StackNav /> : <DrawerMenu />}</>
+            )}
           </>
         </NavigationContainer>
       </View>

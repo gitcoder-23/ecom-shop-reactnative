@@ -26,6 +26,16 @@ const SplashScreen = () => {
         autoPlay
         loop
         style={styles.loader}
+        // colorFilters={[
+        //   {
+        //     keypath: 'button',
+        //     color: '#F00000',
+        //   },
+        //   {
+        //     keypath: 'Sending Loader',
+        //     color: '#F00000',
+        //   },
+        // ]}
       />
     </View>
   );
