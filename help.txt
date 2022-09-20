@@ -11,6 +11,6 @@ https://ionic.io/ionicons
 com.ecomshop
  com.shopy.shopyfirm
 
- // React Native Image Picker
+ // React Native Image Picker 
 
 https://youtu.be/3_ldEVWlL18
