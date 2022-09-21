@@ -17,7 +17,7 @@ const DrawerMenu = ({navigation}) => {
     <>
       <Drawer.Navigator
         drawerContent={props => <CustomDrawer {...props} />}
-        initialRouteName="ButtonTab"
+        initialRouteName="Home"
         screenOptions={{
           headerShown: false,
           // headerStyle: {

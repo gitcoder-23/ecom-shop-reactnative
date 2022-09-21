@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     elevation: 8,
     paddingVertical: 10,
     paddingHorizontal: 10,
-    marginTop: Platform.OS === 'android' ? 50 : null,
+    marginTop: Platform.OS === 'android' ? null : null,
   },
   headerFlex: {
     flexDirection: 'row',

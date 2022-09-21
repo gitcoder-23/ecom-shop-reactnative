@@ -6,6 +6,7 @@ import ProductHome from './ProductHome';
 import {useDispatch, useSelector} from 'react-redux';
 import {useEffect} from 'react';
 import {getProduct} from '../../redux/actions/ProductAction';
+import Loader from '../../components/Constants/Loader';
 
 const HomeScreen = ({navigation}) => {
   const dispatch = useDispatch();
@@ -21,9 +22,9 @@ const HomeScreen = ({navigation}) => {
   return (
     <>
       {loading ? (
-        <View>
-          <Text>Loading..</Text>
-        </View>
+        <>
+          <Loader />
+        </>
       ) : (
         <View>
           <Header navigation={navigation} />

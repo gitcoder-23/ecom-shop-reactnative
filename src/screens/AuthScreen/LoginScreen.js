@@ -1,3 +1,4 @@
+/* eslint-disable handle-callback-err */
 import {
   Alert,
   Dimensions,
@@ -39,11 +40,11 @@ const LoginScreen = ({navigation}) => {
       dispatch(userLoginAction({postLogin}))
         .unwrap()
         .then(loginRes => {
-          console.log('loginResp->', loginRes);
+          // console.log('loginResp->', loginRes);
           dispatch(userDataAction());
         })
         .catch(err => {
-          console.log('loginerr->', err);
+          // console.log('loginerr->', err);
           Alert.alert('', 'Something went wrong invalid credential');
         });
     }
