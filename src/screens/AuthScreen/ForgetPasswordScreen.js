@@ -20,134 +20,103 @@ var {width} = Dimensions.get('window');
 
 const ForgetPasswordScreen = ({navigation}) => {
   const dispatch = useDispatch();
-  const {errorMessage, error, message, forgetPassItem, isForgetPassLoading} =
-    useSelector(state => state.forgetPass);
+  const {message, forgetPassItem} = useSelector(state => state.forgetPass);
 
-  console.log('forgetPassItem->', forgetPassItem);
   const [email, setEmail] = useState('');
 
-  const forGetPassword = async () => {
+  const forGetPassword = () => {
     if (!email) {
       Alert.alert('', 'Please fill all fields');
     } else {
-      try {
-        const postForgetPass = {
-          email: email,
-        };
-        console.log('postForgetPass->', postForgetPass);
-        await dispatch(userForgetPassAction(postForgetPass));
-        Alert.alert('', 'Email send successfully', [
-          {
-            text: 'OK',
-            onPress: () => {
-              setEmail('');
-              navigation?.goBack();
+      const postForgetPass = {
+        email: email,
+      };
+      dispatch(userForgetPassAction(postForgetPass))
+        .unwrap()
+        .then(resp => {
+          Alert.alert('', `${resp?.message}`, [
+            {
+              text: 'OK',
+              onPress: () => {
+                setEmail('');
+                navigation?.goBack();
+              },
             },
-          },
-        ]);
-      } catch (err) {
-        console.log('forgetpass-error->', err);
-        Alert.alert('', 'Something went wrong!');
-        navigation.navigate('Forgetpass');
-      }
+          ]);
+        })
+        .catch(err => {
+          console.log('err->', err);
+          Alert.alert('', 'Something went wrong!');
+          navigation.navigate('Forgetpass');
+        });
     }
   };
 
-  React.useEffect(() => {
-    if (error) {
-      console.log('loadforgotPass->', error);
-    }
-    // if (!forgetPassItem) {
-    //   if (forgetPassItem.success === false) {
-    //     console.log(errorMessage);
-    //   }
-    // } else if (!forgetPassItem?.message) {
-    //   console.log(errorMessage);
-    // } else {
-    //   Alert.alert('', `${forgetPassItem?.message}`, [
-    //     {
-    //       text: 'OK',
-    //       onPress: () => {
-    //         setEmail('');
-    //         // navigation?.goBack();
-    //         navigation.navigate('Login');
-    //       },
-    //     },
-    //   ]);
-    // }
-  }, [error, errorMessage, message]);
-
   return (
     <>
-      {/* {isForgetPassLoading ? (
-        <Text>Loading</Text>
-      ) : ( */}
-      <>
-        <ScrollView
-          showsHorizontalScrollIndicator={false}
-          showsVerticalScrollIndicator={false}>
-          <View style={styles.container}>
-            <View style={styles.LoginHeader}>
-              <Text
-                style={{
-                  fontSize: 20,
-                  fontWeight: '500',
-                  fontFamily: Platform.OS === 'ios' ? 'System' : 'sans-serif',
-                  color: '#555',
-                }}>
-                Forget Password
-              </Text>
-            </View>
-            <TextInput
-              placeholder="Write your email..."
-              placeholderTextColor="#333"
-              style={styles.forgot}
-              value={email}
-              onChangeText={setEmail}
-            />
-            <TouchableOpacity onPress={forGetPassword} style={styles.button}>
-              <View>
-                <Text
-                  style={{
-                    color: '#fff',
-                    fontSize: 20,
-                    fontWeight: '600',
-                    fontFamily: Platform.OS === 'ios' ? 'System' : 'sans-serif',
-                  }}>
-                  Submit
-                </Text>
-              </View>
-            </TouchableOpacity>
-            <View
+      <ScrollView
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}>
+        <View style={styles.container}>
+          <View style={styles.LoginHeader}>
+            <Text
               style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                paddingTop: 10,
-                justifyContent: 'flex-end',
+                fontSize: 20,
+                fontWeight: '500',
+                fontFamily: Platform.OS === 'ios' ? 'System' : 'sans-serif',
+                color: '#555',
               }}>
+              Forget Password
+            </Text>
+          </View>
+          <TextInput
+            placeholder="Write your email..."
+            placeholderTextColor="#333"
+            style={styles.forgot}
+            value={email}
+            onChangeText={setEmail}
+          />
+          <TouchableOpacity onPress={forGetPassword} style={styles.button}>
+            <View>
               <Text
                 style={{
-                  color: '#333',
-                  fontSize: 15,
+                  color: '#fff',
+                  fontSize: 20,
+                  fontWeight: '600',
+                  fontFamily: Platform.OS === 'ios' ? 'System' : 'sans-serif',
                 }}>
-                Have an account ?
+                Submit
               </Text>
-              <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-                <Text
-                  style={{
-                    fontSize: 15,
-                    color: '#FB578E',
-                    paddingRight: 15,
-                  }}>
-                  {' '}
-                  Login
-                </Text>
-              </TouchableOpacity>
             </View>
+          </TouchableOpacity>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              paddingTop: 10,
+              justifyContent: 'flex-end',
+            }}>
+            <Text
+              style={{
+                color: '#333',
+                fontSize: 15,
+              }}>
+              Have an account ?
+            </Text>
+            <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+              <Text
+                style={{
+                  fontSize: 15,
+                  color: '#FB578E',
+                  paddingRight: 15,
+                }}>
+                {' '}
+                Login
+              </Text>
+            </TouchableOpacity>
           </View>
-        </ScrollView>
-      </>
-      {/* )} */}
+        </View>
+      </ScrollView>
     </>
   );
 };
@@ -158,7 +127,7 @@ const styles = StyleSheet.create({
   container: {
     // flex: 1,
     width: width * 1,
-    height: width * 2,
+    height: width * 1.5,
     justifyContent: 'center',
     alignItems: 'center',
   },

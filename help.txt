@@ -24,3 +24,6 @@ https://airbnb.io/lottie/#/
 https://lottiefiles.com/tag/reactnative
 
 
+toupgrade native---> npx react-native upgrade
+
+
