@@ -37,6 +37,7 @@ const HomeScreen = ({navigation}) => {
               loading={loading}
               error={error}
               allProducts={allProducts}
+              navigation={navigation}
             />
           </ScrollView>
         </View>

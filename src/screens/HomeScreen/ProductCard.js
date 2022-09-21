@@ -6,84 +6,115 @@ import {
   Text,
   TouchableOpacity,
   View,
+  TouchableWithoutFeedback,
 } from 'react-native';
 import React, {useState} from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 var {width} = Dimensions.get('window');
 
-const ProductCard = ({id, product, indx}) => {
+const ProductCard = ({id, product, indx, navigation}) => {
   const [click, setClick] = useState(false);
   return (
-    <View style={styles.ProductCard}>
-      <Image source={{uri: product.images[0].url}} style={styles.image} />
-      <View>
-        <Text style={{color: '#333', paddingVertical: 5, textAlign: 'center'}}>
-          {product.name}
-        </Text>
-      </View>
-      <View
-        style={{
-          flexDirection: 'row',
-          alignItems: 'flex-start',
-          // justifyContent: 'center',
-        }}>
-        <Text style={{color: '#333', paddingHorizontal: 10, fontSize: 16}}>
-          $ {product.price}
-        </Text>
-        <Text
-          style={{
-            color: '#555',
-            paddingHorizontal: 10,
-            fontSize: 14,
-            textDecorationLine: 'line-through',
-            marginLeft: -5,
-            marginTop: -5,
-          }}>
-          {/* $ {product.offerPrice} */}
-          {product.offerPrice.length > 0 ? '$' + product.offerPrice : null}
-          {/* {!product.offerPrice ? null : '$' + product.offerPrice} */}
-        </Text>
-        <View style={{flexDirection: 'row', justifyContent: 'flex-end'}}>
-          {click ? (
-            <TouchableOpacity onPress={() => setClick(!click)}>
-              <Icon
-                name={'heart'}
-                color={'crimson'}
-                size={25}
-                // style={{marginRight: 10}}
-              />
-            </TouchableOpacity>
-          ) : (
-            <TouchableOpacity onPress={() => setClick(!click)}>
-              <Icon
-                name={'heart-outline'}
-                color={'#333'}
-                size={25}
-                // style={{marginRight: 10}}
-              />
-            </TouchableOpacity>
-          )}
-          {product.Stock !== 0 ? (
-            <TouchableOpacity>
-              <Icon
-                name={'cart-outline'}
-                color={'#333'}
-                size={25}
-                // style={{marginRight: 10}}
-              />
-            </TouchableOpacity>
+    <>
+      <TouchableWithoutFeedback
+        onPress={() =>
+          navigation.navigate('ProductDetails', {productItem: product})
+        }>
+        <View style={styles.ProductCard}>
+          <Image source={{uri: product.images[0].url}} style={styles.image} />
+          <View>
+            <Text
+              style={{color: '#333', paddingVertical: 5, textAlign: 'center'}}>
+              {product.name}
+            </Text>
+          </View>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'flex-start',
+              // justifyContent: 'center',
+            }}>
+            <View
+              style={
+                {
+                  // flexDirection: 'row',
+                  // alignItems: 'center',
+                  // justifyContent: 'space-between',
+                  // width: '100%',
+                  // paddingBottom: 10,
+                }
+              }>
+              <Text
+                style={{color: '#333', paddingHorizontal: 10, fontSize: 16}}>
+                $ {product.price}
+              </Text>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  // alignItems: 'center',
+                }}>
+                <Icon name={'star'} color={'#C68600'} size={20} />
+                <Text style={{color: '#333', paddingHorizontal: 5}}>
+                  ( {product?.numOfReviews})
+                </Text>
+              </View>
+            </View>
+            <Text
+              style={{
+                color: '#555',
+                paddingHorizontal: 10,
+                fontSize: 14,
+                textDecorationLine: 'line-through',
+                marginLeft: -5,
+                marginTop: -5,
+              }}>
+              {/* $ {product.offerPrice} */}
+              {product.offerPrice.length > 0 ? '$' + product.offerPrice : null}
+              {/* {!product.offerPrice ? null : '$' + product.offerPrice} */}
+            </Text>
+            <View
+              style={{
+                flexDirection: 'row',
+                // justifyContent: 'flex-end',
+                marginTop: 20,
+              }}>
+              {click ? (
+                <TouchableOpacity onPress={() => setClick(!click)}>
+                  <Icon name={'heart'} color={'crimson'} size={20} />
+                </TouchableOpacity>
+              ) : (
+                <TouchableOpacity onPress={() => setClick(!click)}>
+                  <Icon
+                    name={'heart-outline'}
+                    color={'#333'}
+                    size={20}
+                    // style={{marginRight: 10}}
+                  />
+                </TouchableOpacity>
+              )}
+              {product.Stock !== 0 ? (
+                <TouchableOpacity>
+                  <Icon
+                    name={'cart-outline'}
+                    color={'#333'}
+                    size={20}
+                    // style={{marginRight: 10}}
+                  />
+                </TouchableOpacity>
+              ) : null}
+            </View>
+          </View>
+          {product.Stock === 0 ? (
+            <View style={styles.outOfStock}>
+              <Text style={{color: '#fff', fontSize: 10, textAlign: 'center'}}>
+                Stock Limited
+              </Text>
+            </View>
           ) : null}
         </View>
-      </View>
-      {product.Stock === 0 ? (
-        <View style={styles.outOfStock}>
-          <Text style={{color: '#fff', fontSize: 10, textAlign: 'center'}}>
-            Stock Limited
-          </Text>
-        </View>
-      ) : null}
-    </View>
+      </TouchableWithoutFeedback>
+    </>
   );
 };
 

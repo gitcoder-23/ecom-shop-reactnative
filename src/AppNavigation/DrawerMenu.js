@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import CustomDrawer from './CustomDrawer';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import TabNavigator from './TabNavigator';
-import ProductScreen from '../screens/Product/ProductScreen';
+import ProductDetailScreen from '../screens/Product/ProductDetailScreen';
 import WishListScreen from '../screens/WishList/WishListScreen';
 import CartScreen from '../screens/CartScreen/CartScreen';
 import ProfileScreen from '../screens/Profile/ProfileScreen';
@@ -73,7 +73,7 @@ const DrawerMenu = ({navigation}) => {
 
         <Drawer.Screen
           name="Products"
-          component={ProductScreen}
+          component={ProductDetailScreen}
           options={{
             // unmountOnBlur: true,
             drawerIcon: ({color}) => (

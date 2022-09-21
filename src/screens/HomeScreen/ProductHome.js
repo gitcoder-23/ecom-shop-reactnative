@@ -4,7 +4,7 @@ import ProductCard from './ProductCard';
 
 var {width} = Dimensions.get('window');
 
-const ProductHome = ({loading, error, allProducts}) => {
+const ProductHome = ({loading, error, allProducts, navigation}) => {
   return (
     <>
       {
@@ -28,7 +28,12 @@ const ProductHome = ({loading, error, allProducts}) => {
               {allProducts &&
                 allProducts.products.map((pData, indx) => (
                   <Fragment key={indx}>
-                    <ProductCard id={pData._id} product={pData} indx={indx} />
+                    <ProductCard
+                      id={pData._id}
+                      product={pData}
+                      indx={indx}
+                      navigation={navigation}
+                    />
                   </Fragment>
                 ))}
             </View>

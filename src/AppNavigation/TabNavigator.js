@@ -3,10 +3,12 @@ import {Platform, StyleSheet, Text, View, Image} from 'react-native';
 import React from 'react';
 import {useSelector} from 'react-redux';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createStackNavigator} from '@react-navigation/stack';
 
+import {getFocusedRouteNameFromRoute} from '@react-navigation/native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import HomeScreen from '../screens/HomeScreen/HomeScreen';
-import ProductScreen from '../screens/Product/ProductScreen';
+import ProductDetailScreen from '../screens/Product/ProductDetailScreen';
 import WishListScreen from '../screens/WishList/WishListScreen';
 import CartScreen from '../screens/CartScreen/CartScreen';
 import ProfileScreen from '../screens/Profile/ProfileScreen';
@@ -38,11 +40,11 @@ const TabNavigator = () => {
             // style={styles.bottomTab}
           >
             <Tab.Screen
-              name="Dashboard"
-              component={HomeScreen}
+              name="Home2"
+              component={SimpleScreen}
               options={({route}) => ({
                 // headerShown: false,
-                // tabBarStyle: {display: Visibility(route)},
+                tabBarStyle: {display: Visibility(route)},
                 tabBarIcon: ({focused}) => (
                   <View
                     style={{
@@ -68,8 +70,8 @@ const TabNavigator = () => {
               })}
             />
             <Tab.Screen
-              name="Product"
-              component={ProductScreen}
+              name="ProductsTab"
+              component={ProductDetailScreen}
               options={({route}) => ({
                 // headerShown: false,
                 // tabBarStyle: {display: Visibility(route)},
@@ -208,6 +210,40 @@ const TabNavigator = () => {
 };
 
 export default TabNavigator;
+
+const SimpleScreen = () => {
+  const Stack = createStackNavigator();
+  return (
+    <Stack.Navigator
+      screenOptions={
+        {
+          // headerShown: false,
+        }
+      }
+      initialRouteName="Home">
+      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen
+        name="ProductDetails"
+        component={ProductDetailScreen}
+        options={{headerShown: true}}
+      />
+    </Stack.Navigator>
+  );
+};
+
+// in ProductDetails screen after click on home produt if detail of the product then tab closed
+
+const Visibility = route => {
+  console.log('route', route);
+  const routeName = getFocusedRouteNameFromRoute(route) ?? 'Feed';
+
+  if (routeName === 'ProductDetails') {
+    return 'none';
+  }
+  if (routeName === 'Home') {
+    return 'flex';
+  }
+};
 
 const styles = StyleSheet.create({
   bottomTab: {elevation: 8},
