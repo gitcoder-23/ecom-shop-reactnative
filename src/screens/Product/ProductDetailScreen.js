@@ -22,7 +22,7 @@ const ProductDetailScreen = ({navigation, route}) => {
     setProductItem(route?.params?.productItem);
   }, []);
 
-  console.log('productItem->', productItem);
+  // console.log('productItem->', productItem);
   const [click, setClick] = useState(false);
   return (
     <>
