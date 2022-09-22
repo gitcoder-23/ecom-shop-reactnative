@@ -26,4 +26,6 @@ https://lottiefiles.com/tag/reactnative
 
 toupgrade native---> npx react-native upgrade
 
+// Image crop online
+https://www.img2go.com/crop-image
 
