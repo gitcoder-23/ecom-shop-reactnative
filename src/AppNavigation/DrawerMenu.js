@@ -9,6 +9,7 @@ import ProductDetailScreen from '../screens/Product/ProductDetailScreen';
 import WishListScreen from '../screens/WishList/WishListScreen';
 import CartScreen from '../screens/CartScreen/CartScreen';
 import ProfileScreen from '../screens/Profile/ProfileScreen';
+import OrderScreen from '../screens/OrderScreen/OrderScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -115,6 +116,25 @@ const DrawerMenu = ({navigation}) => {
               <>
                 <Icon
                   name="cart-outline"
+                  size={30}
+                  style={[styles.packIcon, {color}]}
+                />
+              </>
+            ),
+          }}
+        />
+        <Drawer.Screen
+          name="My Orders"
+          component={OrderScreen}
+          options={{
+            unmountOnBlur: true,
+
+            title: 'My Orders',
+            headerTitle: 'My Orders',
+            drawerIcon: ({color}) => (
+              <>
+                <Icon
+                  name="reader-outline"
                   size={30}
                   style={[styles.packIcon, {color}]}
                 />
