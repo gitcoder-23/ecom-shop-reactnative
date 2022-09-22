@@ -343,8 +343,18 @@ const styles = StyleSheet.create({
     // height: width / 6 - 20,
     height: width / 6 - 20,
     paddingHorizontal: 10,
-    elevation: 8,
     backgroundColor: '#fff',
+    elevation: 8,
+    // borderBottomWidth: 1,
+    // borderBottomColor: '#333',
+
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.27,
+    shadowRadius: 4.65,
   },
   banner: {
     width: width * 1,
