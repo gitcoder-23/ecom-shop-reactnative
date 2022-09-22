@@ -29,3 +29,6 @@ toupgrade native---> npx react-native upgrade
 // Image crop online
 https://www.img2go.com/crop-image
 
+// forlogo
+https://www.flaticon.com/
+
