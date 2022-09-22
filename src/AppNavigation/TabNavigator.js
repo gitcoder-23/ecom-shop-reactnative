@@ -215,17 +215,15 @@ const SimpleScreen = () => {
   const Stack = createStackNavigator();
   return (
     <Stack.Navigator
-      screenOptions={
-        {
-          // headerShown: false,
-        }
-      }
+      screenOptions={{
+        headerShown: false,
+      }}
       initialRouteName="Home">
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen
         name="ProductDetails"
         component={ProductDetailScreen}
-        options={{headerShown: true}}
+        // options={{headerShown: true}}
       />
     </Stack.Navigator>
   );

@@ -23,7 +23,7 @@ const CustomDrawer = props => {
   const dispatch = useDispatch();
   const {userItem, error} = useSelector(state => state.userAuth);
 
-  console.log('userItem->', userItem);
+  // console.log('userItem->', userItem);
 
   const logoutFunc = () => {
     dispatch(logout());
