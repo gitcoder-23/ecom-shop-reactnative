@@ -81,9 +81,10 @@ const Header = ({navigation}) => {
             }}>
             {allProducts.products.map((i, index) => (
               <TouchableOpacity
-                onPress={() =>
-                  navigation.navigate('ProductDetails', {productItem: i})
-                }
+                onPress={() => {
+                  navigation.navigate('ProductDetails', {productItem: i});
+                  setSearchPro('');
+                }}
                 key={index}>
                 <View
                   style={{
