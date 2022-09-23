@@ -11,6 +11,20 @@ export const getProduct = createAsyncThunk('product/get', async () => {
   }
 });
 
+export const getFilteredProduct = createAsyncThunk(
+  'product/filter/get',
+  async keyword => {
+    try {
+      console.log('keyword-->', keyword);
+      const response = await rootApi.get(`/products?keyword=${keyword}`);
+      console.log('response-filter->', response);
+      return response.data;
+    } catch (error) {
+      return error.response.data.message;
+    }
+  },
+);
+
 // export const getProduct = () => async dispatch => {
 //   try {
 //     dispatch({

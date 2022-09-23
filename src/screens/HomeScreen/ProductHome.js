@@ -4,7 +4,13 @@ import ProductCard from './ProductCard';
 
 var {width} = Dimensions.get('window');
 
-const ProductHome = ({loading, error, allProducts, navigation}) => {
+const ProductHome = ({
+  loading,
+  error,
+  allProducts,
+  filteredProduct,
+  navigation,
+}) => {
   return (
     <>
       {
@@ -33,6 +39,7 @@ const ProductHome = ({loading, error, allProducts, navigation}) => {
                       product={pData}
                       indx={indx}
                       navigation={navigation}
+                      filteredProduct={filteredProduct}
                     />
                   </Fragment>
                 ))}

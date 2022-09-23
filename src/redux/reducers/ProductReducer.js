@@ -1,8 +1,9 @@
 import {createReducer, createSlice} from '@reduxjs/toolkit';
-import {getProduct} from '../actions/ProductAction';
+import {getProduct, getFilteredProduct} from '../actions/ProductAction';
 
 const initialState = {
   allProducts: [],
+  filteredProduct: [],
   isAuthenticated: false,
   loading: true,
   error: true,
@@ -25,6 +26,22 @@ const productReducer = createSlice({
     });
 
     builder.addCase(getProduct.rejected, state => {
+      state.loading = false;
+      state.error = true;
+    });
+
+    // filtered product
+
+    builder.addCase(getFilteredProduct.pending, state => {
+      state.loading = true;
+    });
+    builder.addCase(getFilteredProduct.fulfilled, (state, action) => {
+      state.loading = false;
+      state.error = false;
+      state.filteredProduct = action.payload;
+    });
+
+    builder.addCase(getFilteredProduct.rejected, state => {
       state.loading = false;
       state.error = true;
     });

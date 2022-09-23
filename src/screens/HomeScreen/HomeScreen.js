@@ -5,12 +5,17 @@ import Banner from '../../components/Foreground/Banner';
 import ProductHome from './ProductHome';
 import {useDispatch, useSelector} from 'react-redux';
 import {useEffect} from 'react';
-import {getProduct} from '../../redux/actions/ProductAction';
+import {
+  getProduct,
+  getFilteredProduct,
+} from '../../redux/actions/ProductAction';
 import Loader from '../../components/Constants/Loader';
 
 const HomeScreen = ({navigation}) => {
   const dispatch = useDispatch();
-  const {allProducts, error, loading} = useSelector(state => state.productData);
+  const {allProducts, filteredProduct, error, loading} = useSelector(
+    state => state.productData,
+  );
   // console.log('allProducts->', allProducts);
   useEffect(() => {
     if (error) {
@@ -18,6 +23,7 @@ const HomeScreen = ({navigation}) => {
       console.log(error);
     }
     dispatch(getProduct());
+    dispatch(getFilteredProduct());
   }, [dispatch, error]);
   return (
     <>
@@ -37,6 +43,7 @@ const HomeScreen = ({navigation}) => {
               loading={loading}
               error={error}
               allProducts={allProducts}
+              filteredProduct={filteredProduct}
               navigation={navigation}
             />
           </ScrollView>
