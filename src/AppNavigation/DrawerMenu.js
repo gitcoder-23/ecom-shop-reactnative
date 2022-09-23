@@ -10,6 +10,7 @@ import WishListScreen from '../screens/WishList/WishListScreen';
 import CartScreen from '../screens/CartScreen/CartScreen';
 import ProfileScreen from '../screens/Profile/ProfileScreen';
 import OrderScreen from '../screens/OrderScreen/OrderScreen';
+import ProductAllScreen from '../screens/Product/ProductAllScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -74,7 +75,7 @@ const DrawerMenu = ({navigation}) => {
 
         <Drawer.Screen
           name="Products"
-          component={ProductDetailScreen}
+          component={ProductAllScreen}
           options={{
             // unmountOnBlur: true,
             drawerIcon: ({color}) => (

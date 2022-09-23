@@ -13,6 +13,7 @@ import WishListScreen from '../screens/WishList/WishListScreen';
 import CartScreen from '../screens/CartScreen/CartScreen';
 import ProfileScreen from '../screens/Profile/ProfileScreen';
 import Loader from '../components/Constants/Loader';
+import ProductAllScreen from '../screens/Product/ProductAllScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -71,7 +72,7 @@ const TabNavigator = () => {
             />
             <Tab.Screen
               name="ProductsTab"
-              component={ProductDetailScreen}
+              component={ProductAllScreen}
               options={({route}) => ({
                 // headerShown: false,
                 // tabBarStyle: {display: Visibility(route)},
