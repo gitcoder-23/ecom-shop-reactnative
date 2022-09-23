@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
     width: width * 1,
     justifyContent: 'center',
     alignItems: 'center',
+    // backgroundColor: '#000',
   },
 
   loader: {

@@ -121,12 +121,12 @@ const FilterProducts = ({navigation, allProducts, filterProducts}) => {
               : data?.map((product, indx) => {
                   return (
                     <Fragment key={indx}>
-                      {/* <ProductList
+                      {/* <ProductCard
                         id={product._id}
                         product={product}
                         navigation={navigation}
                       /> */}
-                      <ProductCard
+                      <ProductList
                         id={product._id}
                         product={product}
                         navigation={navigation}

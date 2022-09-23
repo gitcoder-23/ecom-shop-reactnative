@@ -35,7 +35,10 @@ const ProductDetailScreen = ({navigation, route}) => {
             width: width * 1,
           }}>
           <View style={styles.productDetailsTop}>
-            <TouchableOpacity onPress={() => navigation.goBack()}>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.goBack();
+              }}>
               <Icon name="arrow-back" color="#333" size={30} />
             </TouchableOpacity>
             {click ? (

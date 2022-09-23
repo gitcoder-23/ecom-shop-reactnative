@@ -14,13 +14,15 @@ import CartScreen from '../screens/CartScreen/CartScreen';
 import ProfileScreen from '../screens/Profile/ProfileScreen';
 import Loader from '../components/Constants/Loader';
 import ProductAllScreen from '../screens/Product/ProductAllScreen';
+import ProductList from '../screens/Product/ProductList';
+import ProductCard from '../screens/HomeScreen/ProductCard';
 
 const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {
   const {userItem, isUserDataLoading} = useSelector(state => state.userAuth);
 
-  console.log('userItem-inTab->', userItem);
+  // console.log('userItem-inTab->', userItem);
   return (
     <>
       {isUserDataLoading ? (
@@ -239,6 +241,7 @@ const Visibility = route => {
   if (routeName === 'ProductDetails') {
     return 'none';
   }
+
   if (routeName === 'Home') {
     return 'flex';
   }
