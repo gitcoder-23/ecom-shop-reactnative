@@ -27,7 +27,7 @@ const ProductDetailScreen = ({navigation, route}) => {
   return (
     <>
       <View>
-        <Header navigation={navigation} />
+        {/* <Header navigation={navigation} /> */}
         <View
           style={{
             elevation: 8,

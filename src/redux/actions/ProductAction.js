@@ -1,15 +1,19 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import rootApi from '../../rootApi';
 
-export const getProduct = createAsyncThunk('product/get', async () => {
-  try {
-    const response = await rootApi.get('/products');
-    // console.log('response->', response);
-    return response.data;
-  } catch (error) {
-    return error.response.data.message;
-  }
-});
+export const getProduct = createAsyncThunk(
+  'product/get',
+  async (keyword = '') => {
+    try {
+      // const response = await rootApi.get('/products');
+      const response = await rootApi.get(`/products?keyword=${keyword}`);
+      // console.log('response->', response);
+      return response.data;
+    } catch (error) {
+      return error.response.data.message;
+    }
+  },
+);
 
 export const getFilteredProduct = createAsyncThunk(
   'product/filter/get',
