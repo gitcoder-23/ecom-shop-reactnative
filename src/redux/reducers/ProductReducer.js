@@ -1,11 +1,21 @@
 import {createReducer, createSlice} from '@reduxjs/toolkit';
-import {getProduct, getFilteredProduct} from '../actions/ProductAction';
+import {
+  getProduct,
+  getFilteredProduct,
+  addWishlistProduct,
+  removeFromWishlist,
+  getFromWishlist,
+} from '../actions/ProductAction';
 
 const initialState = {
   allProducts: [],
   filteredProduct: [],
+  allWishlistProduct: [],
+  wishlistProduct: [],
   isAuthenticated: false,
   loading: true,
+  allWishlistLoading: true,
+  wishlistLoading: true,
   error: true,
   isSuccess: false,
 };
@@ -45,6 +55,54 @@ const productReducer = createSlice({
       state.loading = false;
       state.error = true;
     });
+
+    // Post wishlist product
+
+    builder.addCase(addWishlistProduct.pending, state => {
+      state.wishlistLoading = true;
+    });
+    builder.addCase(addWishlistProduct.fulfilled, (state, action) => {
+      state.wishlistLoading = false;
+      state.error = false;
+      state.wishlistProduct = action.payload;
+    });
+
+    builder.addCase(addWishlistProduct.rejected, state => {
+      state.wishlistLoading = false;
+      state.error = true;
+    });
+
+    // // remove wishlist product
+
+    // builder.addCase(removeFromWishlist.pending, state => {
+    //   state.wishlistLoading = true;
+    // });
+    // builder.addCase(removeFromWishlist.fulfilled, (state, action) => {
+    //   state.wishlistLoading = false;
+    //   state.error = false;
+    //   state.wishlistProduct = action.payload;
+    // });
+
+    // builder.addCase(removeFromWishlist.rejected, state => {
+    //   state.wishlistLoading = false;
+    //   state.error = true;
+    // });
+
+    // // Get all wishlist product
+
+    // builder.addCase(getFromWishlist.pending, state => {
+    //   state.allWishlistLoading = true;
+    // });
+    // builder.addCase(getFromWishlist.fulfilled, (state, action) => {
+    //   state.allWishlistLoading = false;
+    //   state.error = false;
+    //   state.allWishlistProduct = action.payload;
+    // });
+
+    // builder.addCase(getFromWishlist.rejected, state => {
+    //   state.allWishlistLoading = false;
+    //   state.error = true;
+    // });
   },
 });
 
